@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AxiaLogic Studios | Software Académico y Lógico</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f4f6f9',
+                            100: '#e8edf3',
+                            500: '#1b3b6f',
+                            600: '#13294d',
+                            700: '#0b192e',
+                            accent: '#218380',
+                            warm: '#ff715b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Estilo Neo-Brutalismo / Technical Clean (Diferente al Glassmorphism) */
+        .neubox {
+            background: #ffffff;
+            border: 2px solid #13294d;
+            box-shadow: 4px 4px 0px #13294d;
+            transition: all 0.2s ease;
+        }
+        .neubox:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #13294d;
+        }
+        .neubtn {
+            background: #1b3b6f;
+            color: #ffffff;
+            border: 2px solid #13294d;
+            box-shadow: 3px 3px 0px #13294d;
+            transition: all 0.1s ease;
+        }
+        .neubtn:hover {
+            background: #218380;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #13294d;
+        }
+        .neubtn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #13294d;
+        }
+        .grid-bg {
+            background-image: radial-gradient(#1b3b6f 0.75px, transparent 0.75px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-brand-700 font-sans antialiased grid-bg min-h-screen selection:bg-brand-accent selection:text-white">
+
+    <!-- Header / Barra de Navegación -->
+    <header class="sticky top-0 z-50 bg-brand-50/90 backdrop-blur-md border-b-2 border-brand-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 neubox bg-brand-accent flex items-center justify-center text-white font-mono font-bold text-xl">
+                    AL
+                </div>
+                <span class="font-bold text-xl tracking-tight text-brand-600 font-mono">AxiaLogic<span class="text-brand-accent">.</span></span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="#inicio" class="hover:text-brand-accent transition-colors">Inicio</a>
+                <a href="#filosofia" class="hover:text-brand-accent transition-colors">Filosofía</a>
+                <a href="#portfolio" class="hover:text-brand-accent transition-colors">Aplicaciones</a>
+                <a href="#contacto" class="hover:text-brand-accent transition-colors">Contacto</a>
+            </nav>
+
+            <div>
+                <a href="#portfolio" class="neubtn px-5 py-2.5 rounded-none font-semibold text-sm inline-flex items-center gap-2">
+                    <span>Ver Apps</span>
+                    <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-brand-600 text-xs font-mono font-semibold uppercase tracking-wider neubox shadow-[2px_2px_0px_#13294d]">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    Software Académico & Lógico S.A.S.
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-700 leading-tight">
+                    Ingeniería de software con rigor <span class="text-brand-accent underline decoration-brand-warm decoration-wavy">académico</span>.
+                </h1>
+                <p class="text-lg text-brand-600/90 max-w-xl font-normal">
+                    Diseñamos herramientas digitales de alta precisión, algoritmos de toma de decisiones y plataformas interactivas orientadas a la educación superior y el pensamiento lógico.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#portfolio" class="neubtn px-8 py-4 font-bold text-center flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-cubes"></i> Explorar Portafolio
+                    </a>
+                    <a href="#contacto" class="neubox px-8 py-4 font-bold text-center bg-white hover:bg-brand-100 flex items-center justify-center gap-3 text-brand-700">
+                        <i class="fa-solid fa-envelope"></i> Vincularse / Soporte
+                    </a>
+                </div>
+            </div>
+
+            <!-- Widget Gráfico / Técnico Estilizado -->
+            <div class="lg:col-span-5">
+                <div class="neubox p-6 bg-white space-y-4">
+                    <div class="flex items-center justify-between border-b-2 border-brand-600 pb-3">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-brand-warm border border-brand-600"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400 border border-brand-600"></div>
+                            <div class="w-3 h-3 rounded-full bg-brand-accent border border-brand-600"></div>
+                        </div>
+                        <span class="font-mono text-xs text-brand-600">axia-core-v1.0.js</span>
+                    </div>
+                    <div class="font-mono text-xs space-y-2 text-brand-600 bg-brand-50 p-4 border border-brand-600">
+                        <p class="text-brand-accent">&gt; init_module("GameTheory_Engine");</p>
+                        <p>&gt; Nash_Equilibrium: <span class="text-brand-warm font-bold">OPTIMIZED</span></p>
+                        <p class="text-brand-accent">&gt; init_module("Matrix_Processor");</p>
+                        <p>&gt; Det_2x2_Determinant: <span class="text-brand-accent font-bold">COMPUTED</span></p>
+                        <p class="animate-pulse">&gt; Status: S.A.S Operational _</p>
+                    </div>
+                    <div class="pt-2 text-xs text-right text-brand-600 font-mono">
+                        // Diseñado para mentes analíticas
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Filosofía / Pilares -->
+    <section id="filosofia" class="bg-white border-y-2 border-brand-600 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <h2 class="text-3xl font-extrabold tracking-tight">Nuestro ADN Académico</h2>
+                <p class="text-brand-600">Transformamos conceptos teóricos complejos en experiencias de usuario intuitivas, rápidas y metodológicamente impecables.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="neubox p-8 bg-brand-50 space-y-4">
+                    <div class="w-14 h-14 neubox bg-white flex items-center justify-center text-brand-accent text-2xl font-bold">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Rigores Teóricos</h3>
+                    <p class="text-sm text-brand-600">Cada app nace de modelos formales validados (álgebra lineal, teoría de juegos, economía conductual) para asegurar veracidad académica.</p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="neubox p-8 bg-brand-50 space-y-4">
+                    <div class="w-14 h-14 neubox bg-white flex items-center justify-center text-brand-warm text-2xl font-bold">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Arquitectura Limpia</h3>
+                    <p class="text-sm text-brand-600">Desarrollo nativo y optimizado con gestión robusta de estados, garantizando ejecución fluida sin latencia ni dependencias innecesarias.</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="neubox p-8 bg-brand-50 space-y-4">
+                    <div class="w-14 h-14 neubox bg-white flex items-center justify-center text-brand-accent text-2xl font-bold">
+                        <i class="fa-solid fa-chess-board"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Lógica Interactiva</h3>
+                    <p class="text-sm text-brand-600">Convertimos la pizarra de tiza y el papel milimétrico en simuladores dinámicos que potencian el razonamiento crítico del usuario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Portfolio / Aplicaciones -->
+    <section id="portfolio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div class="space-y-3">
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Portafolio Oficial</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Aplicaciones Destacadas</h2>
+            </div>
+            <p class="text-brand-600 max-w-md text-sm">
+                Nuestros primeros lanzamientos oficiales orientados al ecosistema móvil y optimizados bajo estrictos estándares de calidad.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- App 1: Calculadora de Matrices -->
+            <div class="neubox bg-white p-8 sm:p-10 flex flex-col justify-between space-y-8">
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-brand-100 border border-brand-600 text-xs font-mono font-bold text-brand-700">MATEMÁTICA APLICADA</span>
+                        <div class="w-10 h-10 neubox bg-brand-accent flex items-center justify-center text-white font-mono text-lg font-bold">
+                            2x2
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-brand-700">Calculadora Científica Matricial</h3>
+                    <p class="text-brand-600 text-sm leading-relaxed">
+                        Herramienta de precisión especializada en álgebra lineal. Diseñada para resolver operaciones de matrices de 2x2 y 3x3 de forma instantánea, incorporando un registro de historial detallado paso a paso para auditoría de procedimientos educativos.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">Cálculo de Determinantes</span>
+                        <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">Historial Persistente</span>
+                        <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">Modo Paso a Paso</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t-2 border-brand-100 flex items-center justify-between">
+                    <span class="font-mono text-xs text-brand-500 font-semibold">// Versión 1.2 Disponible</span>
+                    <button class="neubtn px-5 py-2.5 text-sm font-semibold flex items-center gap-2">
+                        <i class="fa-brands fa-google-play"></i> Google Play
+                    </button>
+                </div>
+            </div>
+
+            <!-- App 2: Teoría de Juegos No Cooperativos -->
+            <div class="neubox bg-white p-8 sm:p-10 flex flex-col justify-between space-y-8">
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-brand-warm/20 border border-brand-600 text-xs font-mono font-bold text-brand-700">ECONOMÍA & DECISIONES</span>
+                        <div class="w-10 h-10 neubox bg-brand-warm flex items-center justify-center text-white font-mono text-lg font-bold">
+                            JN
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-brand-700">Simulador de Teoría de Juegos No Cooperativos</h3>
+                    <p class="text-brand-600 text-sm leading-relaxed">
+                        Entorno lúdico e interactivo basado en modelos no cooperativos. Permite configurar matrices de pagos, simular dilemas estratégicos clásicos y calcular equilibrios de Nash de manera gráfica para entender la toma de decisiones racionales.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">Equilibrio de Nash</span>
+                        <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">Estrategias Dominantes</span>
+                        <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">Modo Multijugador Local</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t-2 border-brand-100 flex items-center justify-between">
+                    <span class="font-mono text-xs text-brand-500 font-semibold">// Lanzamiento Oficial</span>
+                    <button class="neubtn px-5 py-2.5 text-sm font-semibold flex items-center gap-2">
+                        <i class="fa-brands fa-google-play"></i> Google Play
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="bg-white border-t-2 border-brand-600 py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="neubox bg-brand-50 p-8 sm:p-12 space-y-8">
+                <div class="text-center space-y-3">
+                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Canal Directo</span>
+                    <h2 class="text-3xl font-extrabold">Inicia un proyecto con nosotros</h2>
+                    <p class="text-brand-600 text-sm max-w-lg mx-auto">
+                        ¿Interesado en nuestras herramientas académicas o en colaborar en un desarrollo tecnológico a la medida? Escríbenos.
+                    </p>
+                </div>
+
+                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Mensaje simulado enviado con éxito. ¡Gracias por contactar a AxiaLogic Studios!');">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-mono font-bold uppercase">Nombre / Institución</label>
+                            <input type="text" required class="w-full neubox bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="Ej. Dr. Roberto Gómez">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-mono font-bold uppercase">Correo Electrónico</label>
+                            <input type="email" required class="w-full neubox bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="contacto@universidad.edu">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-mono font-bold uppercase">Mensaje o Propuesta</label>
+                        <textarea rows="4" required class="w-full neubox bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="Escribe los detalles de tu consulta..."></textarea>
+                    </div>
+                    <div class="text-center pt-2">
+                        <button type="submit" class="neubtn px-10 py-4 font-bold text-base inline-flex items-center gap-3">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-700 text-white border-t-2 border-brand-600 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 neubox bg-brand-accent flex items-center justify-center text-white font-mono font-bold text-sm">
+                    AL
+                </div>
+                <span class="font-bold text-lg font-mono">AxiaLogic Studios S.A.S.</span>
+            </div>
+            <p class="text-xs font-mono text-brand-100/70 text-center">
+                &copy; 2026 AxiaLogic Studios S.A.S. Todos los derechos reservados. Rigor lógico y académico.
+            </p>
+            <div class="flex space-x-4 text-lg">
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-google-play"></i></a>
+                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
