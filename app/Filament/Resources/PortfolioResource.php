@@ -73,8 +73,92 @@ class PortfolioResource extends Resource
                             ->numeric()
                             ->default(0)
                             ->required(),
+                        Forms\Components\RichEditor::make('privacy_policy')
+                            ->label('Política de Privacidad')
+                            ->columnSpanFull()
+                            ->hintAction(
+                                Forms\Components\Actions\Action::make('generate_privacy')
+                                    ->label('Generar con IA')
+                                    ->icon('heroicon-m-sparkles')
+                                    ->action(function (Forms\Get $get, Forms\Set $set) {
+                                        self::generateAiText('privacy', $get, $set);
+                                    })
+                            ),
+                        Forms\Components\RichEditor::make('terms_and_conditions')
+                            ->label('Términos y Condiciones')
+                            ->columnSpanFull()
+                            ->hintAction(
+                                Forms\Components\Actions\Action::make('generate_terms')
+                                    ->label('Generar con IA')
+                                    ->icon('heroicon-m-sparkles')
+                                    ->action(function (Forms\Get $get, Forms\Set $set) {
+                                        self::generateAiText('terms', $get, $set);
+                                    })
+                            ),
                     ])->columns(2)
             ]);
+    }
+
+    private static function generateAiText(string $type, Forms\Get $get, Forms\Set $set): void
+    {
+        $apiKey = env('APP_APIKEY_AI');
+        if (!$apiKey) {
+            \Filament\Notifications\Notification::make()->danger()->title('API Key faltante')->body('Configura APP_APIKEY_AI en el archivo .env')->send();
+            return;
+        }
+
+        $title = $get('title');
+        $category = $get('category');
+        $description = $get('description');
+
+        if (!$title || !$description) {
+            \Filament\Notifications\Notification::make()->warning()->title('Faltan datos')->body('Ingresa título y descripción para que la IA tenga contexto.')->send();
+            return;
+        }
+
+        $tipoDoc = $type === 'privacy' ? 'una Política de Privacidad' : 'unos Términos y Condiciones';
+        $prompt = "Escribe {$tipoDoc} en formato HTML (solo el contenido útil, usando h2, h3, p, ul. Sin html, head o body) para un producto digital/aplicación llamada '{$title}' de la categoría '{$category}'. Descripción de la aplicación: {$description}.";
+
+        try {
+            if (str_starts_with($apiKey, 'sk-')) {
+                // OpenAI
+                $response = \Illuminate\Support\Facades\Http::withToken($apiKey)
+                    ->timeout(30)
+                    ->post('https://api.openai.com/v1/chat/completions', [
+                        'model' => 'gpt-3.5-turbo',
+                        'messages' => [
+                            ['role' => 'system', 'content' => 'Eres un abogado experto en tecnología. Devuelve solo HTML limpio.'],
+                            ['role' => 'user', 'content' => $prompt]
+                        ]
+                    ]);
+                $text = $response->json('choices.0.message.content');
+            } else {
+                // Gemini
+                $response = \Illuminate\Support\Facades\Http::withHeaders([
+                    'x-goog-api-key' => $apiKey,
+                    'Content-Type' => 'application/json',
+                ])->timeout(30)->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent', [
+                    'contents' => [
+                        ['parts' => [['text' => "Eres un abogado experto en tecnología. Devuelve solo HTML limpio. " . $prompt]]]
+                    ]
+                ]);
+                $text = $response->json('candidates.0.content.parts.0.text');
+            }
+
+            if ($text) {
+                // Remove markdown codeblock formatting if present
+                $text = preg_replace('/```html\n?/', '', $text);
+                $text = preg_replace('/```\n?/', '', $text);
+                
+                $field = $type === 'privacy' ? 'privacy_policy' : 'terms_and_conditions';
+                $set($field, trim($text));
+                \Filament\Notifications\Notification::make()->success()->title('Generado correctamente')->send();
+            } else {
+                \Filament\Notifications\Notification::make()->danger()->title('Error en IA')->body('No se pudo generar el texto.')->send();
+            }
+        } catch (\Exception $e) {
+            \Filament\Notifications\Notification::make()->danger()->title('Error')->body($e->getMessage())->send();
+        }
     }
 
     public static function table(Table $table): Table

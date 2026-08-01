@@ -238,14 +238,36 @@
                         </div>
                     </div>
 
-                    <div class="pt-6 border-t-2 border-brand-100 flex items-center justify-between">
+                    <div class="pt-6 border-t-2 border-brand-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <span class="font-mono text-xs text-brand-500 font-semibold">// {{ $portfolio->version ?: 'Lanzamiento' }}</span>
-                        @if($portfolio->link)
-                            <a href="{{ $portfolio->link }}" class="neubtn px-5 py-2.5 text-sm font-semibold flex items-center gap-2">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
-                        @endif
+                        
+                        <div class="flex flex-wrap items-center gap-3 justify-end">
+                            @if($portfolio->privacy_policy)
+                                <button onclick="openLegalModal('privacy', {{ $portfolio->id }})" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Política de Privacidad</button>
+                            @endif
+                            @if($portfolio->terms_and_conditions)
+                                <span class="text-brand-300 hidden sm:inline">|</span>
+                                <button onclick="openLegalModal('terms', {{ $portfolio->id }})" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Términos y Condiciones</button>
+                            @endif
+                            @if($portfolio->link)
+                                <a href="{{ $portfolio->link }}" class="neubtn px-5 py-2.5 text-sm font-semibold flex items-center gap-2 ml-1">
+                                    <i class="fa-brands fa-google-play"></i> Google Play
+                                </a>
+                            @endif
+                        </div>
                     </div>
+                    
+                    <!-- Hidden content for modals -->
+                    @if($portfolio->privacy_policy)
+                        <div id="legal-content-privacy-{{ $portfolio->id }}" class="hidden">
+                            {!! $portfolio->privacy_policy !!}
+                        </div>
+                    @endif
+                    @if($portfolio->terms_and_conditions)
+                        <div id="legal-content-terms-{{ $portfolio->id }}" class="hidden">
+                            {!! $portfolio->terms_and_conditions !!}
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -504,6 +526,60 @@
             }
             
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+    </script>
+    <!-- Modal Legal -->
+    <div id="legalModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-brand-700/80 backdrop-blur-sm" onclick="closeLegalModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="neubox bg-white w-full max-w-3xl max-h-[90vh] flex flex-col relative z-10">
+            <div class="flex items-center justify-between p-6 border-b-2 border-brand-100">
+                <h3 id="legalModalTitle" class="text-2xl font-extrabold text-brand-700">Documento Legal</h3>
+                <button onclick="closeLegalModal()" class="w-8 h-8 flex items-center justify-center text-brand-500 hover:text-brand-warm hover:bg-brand-50 border-2 border-transparent hover:border-brand-warm transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="legalModalBody" class="p-6 overflow-y-auto legal-content text-brand-600 text-sm">
+                <!-- Contenido inyectado por JS -->
+            </div>
+            
+            <div class="p-4 border-t-2 border-brand-100 flex justify-end bg-brand-50">
+                <button onclick="closeLegalModal()" class="neubtn px-6 py-2.5 text-sm font-bold bg-white text-brand-700">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .legal-content h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: #0b192e; }
+        .legal-content h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.75rem; color: #13294d; margin-top: 1.5rem; }
+        .legal-content h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: #1b3b6f; margin-top: 1.25rem; }
+        .legal-content p { margin-bottom: 1rem; line-height: 1.6; }
+        .legal-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .legal-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .legal-content li { margin-bottom: 0.5rem; }
+        .legal-content strong { font-weight: 700; color: #0b192e; }
+        .legal-content a { color: #218380; text-decoration: underline; text-underline-offset: 2px; }
+    </style>
+
+    <script>
+        function openLegalModal(type, id) {
+            const contentId = `legal-content-${type}-${id}`;
+            const contentEl = document.getElementById(contentId);
+            
+            if (contentEl) {
+                document.getElementById('legalModalTitle').innerText = type === 'privacy' ? 'Política de Privacidad' : 'Términos y Condiciones';
+                document.getElementById('legalModalBody').innerHTML = contentEl.innerHTML;
+                document.getElementById('legalModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legalModal').classList.add('hidden');
+            document.body.style.overflow = '';
         }
     </script>
 </body>

@@ -20,6 +20,8 @@ class Portfolio extends Model
         'color_theme',
         'is_active',
         'order',
+        'privacy_policy',
+        'terms_and_conditions',
     ];
 
     protected $casts = [
