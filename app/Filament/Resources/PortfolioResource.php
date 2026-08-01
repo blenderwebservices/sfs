@@ -103,8 +103,10 @@ class PortfolioResource extends Resource
             ])
             ->defaultSort('order', 'asc')
             ->filters([
-                Tables\Filters\ToggledFilter::make('is_active')
-                    ->label('Solo Activos'),
+                Tables\Filters\Filter::make('is_active')
+                    ->label('Solo Activos')
+                    ->toggle()
+                    ->query(fn ($query) => $query->where('is_active', true)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
