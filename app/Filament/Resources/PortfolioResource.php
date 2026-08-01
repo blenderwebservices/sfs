@@ -134,10 +134,11 @@ class PortfolioResource extends Resource
                 $text = $response->json('choices.0.message.content');
             } else {
                 // Gemini
+                $model = env('APP_MODEL_AI', 'gemini-1.5-flash');
                 $response = \Illuminate\Support\Facades\Http::withHeaders([
                     'x-goog-api-key' => $apiKey,
                     'Content-Type' => 'application/json',
-                ])->timeout(30)->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent', [
+                ])->timeout(30)->post("https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent", [
                     'contents' => [
                         ['parts' => [['text' => "Eres un abogado experto en tecnología. Devuelve solo HTML limpio. " . $prompt]]]
                     ]

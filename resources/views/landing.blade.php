@@ -243,11 +243,11 @@
                         
                         <div class="flex flex-wrap items-center gap-3 justify-end">
                             @if($portfolio->privacy_policy)
-                                <button onclick="openLegalModal('privacy', {{ $portfolio->id }})" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Política de Privacidad</button>
+                                <a href="{{ route('portfolio.privacy', $portfolio) }}" onclick="openLegalModal('privacy', {{ $portfolio->id }}); return false;" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Política de Privacidad</a>
                             @endif
                             @if($portfolio->terms_and_conditions)
                                 <span class="text-brand-300 hidden sm:inline">|</span>
-                                <button onclick="openLegalModal('terms', {{ $portfolio->id }})" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Términos y Condiciones</button>
+                                <a href="{{ route('portfolio.terms', $portfolio) }}" onclick="openLegalModal('terms', {{ $portfolio->id }}); return false;" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Términos y Condiciones</a>
                             @endif
                             @if($portfolio->link)
                                 <a href="{{ $portfolio->link }}" class="neubtn px-5 py-2.5 text-sm font-semibold flex items-center gap-2 ml-1">
