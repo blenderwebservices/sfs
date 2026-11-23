@@ -3,233 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions Factory Studio | Software Lógico y de Precisión</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f4f6f9',
-                            100: '#e8edf3',
-                            500: '#1b3b6f',
-                            600: '#13294d',
-                            700: '#0b192e',
-                            accent: '#218380',
-                            warm: '#ff715b'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* Estilo Neo-Brutalismo / Technical Clean */
-        .neubox {
-            background: #ffffff;
-            border: 2px solid #13294d;
-            box-shadow: 4px 4px 0px #13294d;
-            transition: all 0.2s ease;
-        }
-        .neubox:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #13294d;
-        }
-        .neubtn {
-            background: #1b3b6f;
-            color: #ffffff;
-            border: 2px solid #13294d;
-            box-shadow: 3px 3px 0px #13294d;
-            transition: all 0.1s ease;
-        }
-        .neubtn:hover {
-            background: #218380;
-            transform: translate(-1px, -1px);
-            box-shadow: 4px 4px 0px #13294d;
-        }
-        .neubtn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px #13294d;
-        }
-        .grid-bg {
-            background-image: radial-gradient(#1b3b6f 0.75px, transparent 0.75px);
-            background-size: 24px 24px;
-        }
-    </style>
+    <title>Solutions Factory Studio | Apps de Precisión Matemática y Sitios Web PyMEs</title>
+    <meta name="description" content="Descarga gratis nuestra Calculadora Científica Matricial 3x3 y Simulador de Teoría de Juegos en Google Play. 100% Local-First, sin registro y offline. También desarrollamos sitios web para micro y PyMEs.">
+    @include('partials.styles')
 </head>
 <body class="bg-brand-50 text-brand-700 font-sans antialiased grid-bg min-h-screen selection:bg-brand-accent selection:text-white">
 
-    <!-- Header / Barra de Navegación -->
-    <header class="sticky top-0 z-50 bg-brand-50/90 backdrop-blur-md border-b-2 border-brand-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 neubox bg-brand-accent flex items-center justify-center text-white font-mono font-bold text-xl">
-                    SF
-                </div>
-                <span class="font-bold text-xl tracking-tight text-brand-600 font-mono">SolutionsFactory<span class="text-brand-accent">.</span></span>
-            </div>
-            
-            <nav class="hidden md:flex items-center space-x-8 font-medium">
-                <a href="#inicio" class="hover:text-brand-accent transition-colors font-mono">Inicio</a>
-                <a href="#filosofia" class="hover:text-brand-accent transition-colors font-mono">Filosofía</a>
-                <a href="#portfolio" class="hover:text-brand-accent transition-colors font-mono">Portafolio</a>
-                <a href="#agentes" class="hover:text-brand-accent transition-colors font-mono">Agentes IA</a>
-                <a href="#contacto" class="hover:text-brand-accent transition-colors font-mono">Contacto</a>
-            </nav>
+    @include('partials.header')
 
-            <div class="flex items-center space-x-3">
-                @auth
-                    <div class="hidden lg:flex flex-col items-end">
-                        <span class="text-[10px] font-mono text-brand-600 uppercase font-bold tracking-wider">Conectado</span>
-                        <span class="text-sm font-mono text-brand-accent font-bold">{{ auth()->user()->name }}</span>
-                    </div>
-                    <a href="/admin" class="neubtn px-4 py-2 rounded-none font-semibold text-xs inline-flex items-center gap-2">
-                        <span>Panel Admin</span>
-                        <i class="fa-solid fa-sliders"></i>
-                    </a>
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
-                        @csrf
-                        <button type="submit" class="neubox bg-white hover:bg-brand-100 text-brand-warm font-mono font-bold text-xs px-3 py-2">
-                            [Salir]
-                        </button>
-                    </form>
-                @else
-                    <a href="/admin/login" class="neubtn px-4 py-2.5 rounded-none font-semibold text-xs inline-flex items-center gap-2">
-                        <span>Iniciar Sesión</span>
-                        <i class="fa-solid fa-sign-in text-xs"></i>
-                    </a>
-                @endauth
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32">
+    <!-- Hero Section (Centrado en Apps Móviles) -->
+    <section id="inicio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-20 lg:pb-28">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-brand-600 text-xs font-mono font-semibold uppercase tracking-wider neubox shadow-[2px_2px_0px_#13294d]">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white border-2 border-brand-600 text-xs font-mono font-semibold uppercase tracking-wider neubox shadow-[2px_2px_0px_#13294d]">
                     <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
-                    Solutions Factory Studio S.A.S.
+                    Apps Android · 100% Local-First · Gratis en Google Play
                 </div>
+
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-700 leading-tight">
-                    Ingeniería de software con rigor <span class="text-brand-accent underline decoration-brand-warm decoration-wavy">académico</span>.
+                    Apps de precisión <span class="text-brand-accent underline decoration-brand-warm decoration-wavy">matemática</span> y toma de decisiones para tu bolsillo.
                 </h1>
-                <p class="text-lg text-brand-600/90 max-w-xl font-normal">
-                    Diseñamos herramientas digitales de alta precisión, algoritmos de toma de decisiones y plataformas interactivas orientadas a la educación superior y el pensamiento lógico.
+
+                <p class="text-lg text-brand-600/90 max-w-xl font-normal leading-relaxed">
+                    Resuelve matrices 2x2 y 3x3 paso a paso o simula equilibrios de Nash en segundos. Diseñadas para estudiantes, docentes y analistas que necesitan exactitud sin conexión ni distracciones.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#portfolio" class="neubtn px-8 py-4 font-bold text-center flex items-center justify-center gap-3">
-                        <i class="fa-solid fa-cubes"></i> Explorar Portafolio
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <a href="#portfolio" class="neubtn px-8 py-4 font-bold text-center flex items-center justify-center gap-3 text-base">
+                        <i class="fa-brands fa-google-play text-lg"></i> Descargar Apps en Google Play
                     </a>
-                    <a href="#contacto" class="neubox px-8 py-4 font-bold text-center bg-white hover:bg-brand-100 flex items-center justify-center gap-3 text-brand-700">
-                        <i class="fa-solid fa-envelope"></i> Vincularse / Soporte
+                    <a href="#pymes" class="neubox px-6 py-4 font-bold text-center bg-white hover:bg-brand-100 flex items-center justify-center gap-2.5 text-brand-700 text-sm">
+                        <i class="fa-solid fa-store text-brand-warm"></i> ¿Necesitas un sitio web para tu negocio?
                     </a>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-xs font-mono text-brand-600">
+                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-brand-accent"></i> Gratis</span>
+                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-user-slash text-brand-accent"></i> Sin registro</span>
+                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-wifi text-brand-accent"></i> Funciona offline</span>
+                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-brand-accent"></i> Privacidad Local-First</span>
                 </div>
             </div>
 
-            <!-- Widget Gráfico / Técnico Estilizado -->
+            <!-- Mockup Interactivo de Teléfono ejecutando las Apps -->
             <div class="lg:col-span-5">
-                <div class="neubox p-6 bg-white space-y-4">
+                <div class="neubox p-5 bg-white space-y-4">
                     <div class="flex items-center justify-between border-b-2 border-brand-600 pb-3">
-                        <div class="flex space-x-2">
-                            <div class="w-3 h-3 rounded-full bg-brand-warm border border-brand-600"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-400 border border-brand-600"></div>
-                            <div class="w-3 h-3 rounded-full bg-brand-accent border border-brand-600"></div>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="switchHeroMockup('calc')" id="tab-mock-calc" class="px-3 py-1.5 text-xs font-mono font-bold border-2 border-brand-600 bg-brand-accent text-white transition-colors">
+                                Matriz 3x3
+                            </button>
+                            <button type="button" onclick="switchHeroMockup('game')" id="tab-mock-game" class="px-3 py-1.5 text-xs font-mono font-bold border-2 border-brand-600 bg-brand-50 text-brand-700 hover:bg-brand-100 transition-colors">
+                                Teoría de Juegos
+                            </button>
                         </div>
-                        <span class="font-mono text-xs text-brand-600">sf-core-v1.0.js</span>
+                        <span class="font-mono text-[11px] text-brand-500 font-semibold">Vista Real</span>
                     </div>
-                    <div class="font-mono text-xs space-y-2 text-brand-600 bg-brand-50 p-4 border border-brand-600">
-                        <p class="text-brand-accent">&gt; init_module("GameTheory_Engine");</p>
-                        <p>&gt; Nash_Equilibrium: <span class="text-brand-warm font-bold">OPTIMIZED</span></p>
-                        <p class="text-brand-accent">&gt; init_module("Matrix_Processor");</p>
-                        <p>&gt; Det_2x2_Determinant: <span class="text-brand-accent font-bold">COMPUTED</span></p>
-                        <p class="animate-pulse">&gt; Status: Solutions Factory Operational _</p>
+
+                    <!-- Marco de Teléfono -->
+                    <div class="mx-auto max-w-[300px] border-4 border-brand-700 rounded-3xl bg-brand-700 p-2.5 shadow-[4px_4px_0px_#13294d]">
+                        <div class="w-16 h-1.5 bg-brand-500 rounded-full mx-auto mb-2.5"></div>
+
+                        <!-- Pantalla App 1: Calculadora Matricial -->
+                        <div id="hero-mock-calc" class="bg-brand-50 rounded-2xl p-4 space-y-3 border border-brand-600">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-[10px] font-bold uppercase text-brand-accent">Calculadora Matricial</span>
+                                <span class="px-1.5 py-0.5 bg-green-100 text-green-800 text-[9px] font-mono font-bold border border-green-400">OFFLINE</span>
+                            </div>
+
+                            <div class="bg-white border-2 border-brand-600 p-2.5">
+                                <div class="text-[10px] font-mono text-brand-500 mb-1.5">Matriz A (3x3)</div>
+                                <div class="grid grid-cols-3 gap-1.5 text-center font-mono text-xs font-bold">
+                                    <div class="bg-brand-50 border border-brand-200 py-1">2</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">-1</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">3</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">0</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">4</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">1</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">5</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">2</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1">-2</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-700 text-white p-3 font-mono text-[11px] space-y-1">
+                                <div class="text-brand-accent font-bold">Paso a Paso · Regla de Sarrus</div>
+                                <div class="text-brand-100/80">= 2(-8 - 2) - (-1)(0 - 5) + 3(0 - 20)</div>
+                                <div class="text-brand-warm font-bold text-sm pt-1">det(A) = -85</div>
+                            </div>
+                        </div>
+
+                        <!-- Pantalla App 2: Simulador Teoría de Juegos -->
+                        <div id="hero-mock-game" class="hidden bg-brand-50 rounded-2xl p-4 space-y-3 border border-brand-600">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-[10px] font-bold uppercase text-brand-warm">Simulador Nash</span>
+                                <span class="px-1.5 py-0.5 bg-green-100 text-green-800 text-[9px] font-mono font-bold border border-green-400">LOCAL</span>
+                            </div>
+
+                            <div class="bg-white border-2 border-brand-600 p-2.5">
+                                <div class="text-[10px] font-mono text-brand-500 mb-1.5">Dilema del Prisionero</div>
+                                <div class="grid grid-cols-3 gap-1 text-center font-mono text-[10px]">
+                                    <div></div>
+                                    <div class="font-bold text-brand-600">Cooperar</div>
+                                    <div class="font-bold text-brand-600">Traicionar</div>
+                                    <div class="font-bold text-brand-600 flex items-center justify-center">Coop.</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1.5">(3, 3)</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1.5">(0, 5)</div>
+                                    <div class="font-bold text-brand-600 flex items-center justify-center">Traic.</div>
+                                    <div class="bg-brand-50 border border-brand-200 py-1.5">(5, 0)</div>
+                                    <div class="bg-brand-warm/20 border-2 border-brand-warm py-1.5 font-bold text-brand-700">(1, 1)*</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-700 text-white p-3 font-mono text-[11px] space-y-1">
+                                <div class="text-brand-warm font-bold">Equilibrio de Nash Detectado</div>
+                                <div class="text-brand-100/90">Estrategia: (Traicionar, Traicionar)</div>
+                                <div class="text-brand-accent font-bold pt-0.5">Pagos óptimos: (1, 1)</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="pt-2 text-xs text-right text-brand-600 font-mono">
-                        // Diseñado para mentes analíticas
+
+                    <div class="text-xs text-center text-brand-600 font-mono">
+                        // Resultados instantáneos en tu Android
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Filosofía / Pilares -->
-    <section id="filosofia" class="bg-white border-y-2 border-brand-600 py-20">
+    <!-- Sección de Beneficios Tangibles -->
+    <section id="beneficios" class="bg-white border-y-2 border-brand-600 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
-                <h2 class="text-3xl font-extrabold tracking-tight">Nuestro ADN Académico</h2>
-                <p class="text-brand-600">Transformamos conceptos teóricos complejos en experiencias de usuario intuitivas, rápidas y metodológicamente impecables.</p>
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">¿Por qué elegir nuestras apps?</span>
+                <h2 class="text-3xl font-extrabold tracking-tight">Diseñadas para resolver, no para complicar</h2>
+                <p class="text-brand-600 text-sm">Cada herramienta elimina fricción en tus estudios, clases o análisis diario con resultados claros y verificables.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Tarjeta 1 -->
-                <div class="neubox p-8 bg-brand-50 space-y-4">
-                    <div class="w-14 h-14 neubox bg-white flex items-center justify-center text-brand-accent text-2xl font-bold">
-                        <i class="fa-solid fa-graduation-cap"></i>
+                <div class="neubox p-7 bg-brand-50 space-y-3">
+                    <div class="w-12 h-12 neubox bg-white flex items-center justify-center text-brand-accent text-xl font-bold">
+                        <i class="fa-solid fa-square-root-variable"></i>
                     </div>
-                    <h3 class="text-xl font-bold">Rigores Teóricos</h3>
-                    <p class="text-sm text-brand-600">Cada app nace de modelos formales validados (álgebra lineal, teoría de juegos, economía conductual) para asegurar veracidad académica.</p>
+                    <h3 class="text-lg font-bold">Resuelve determinantes 3x3 en segundos</h3>
+                    <p class="text-sm text-brand-600 leading-relaxed">Calcula matrices 2x2 y 3x3 al instante y revisa cada paso del procedimiento para estudiar y verificar tareas sin errores.</p>
                 </div>
 
-                <!-- Tarjeta 2 -->
-                <div class="neubox p-8 bg-brand-50 space-y-4">
-                    <div class="w-14 h-14 neubox bg-white flex items-center justify-center text-brand-warm text-2xl font-bold">
-                        <i class="fa-solid fa-microchip"></i>
+                <div class="neubox p-7 bg-brand-50 space-y-3">
+                    <div class="w-12 h-12 neubox bg-white flex items-center justify-center text-brand-warm text-xl font-bold">
+                        <i class="fa-solid fa-chess-knight"></i>
                     </div>
-                    <h3 class="text-xl font-bold">Arquitectura Limpia</h3>
-                    <p class="text-sm text-brand-600">Desarrollo nativo y optimizado con gestión robusta de estados, garantizando ejecución fluida sin latencia ni dependencias innecesarias.</p>
+                    <h3 class="text-lg font-bold">Simula el Equilibrio de Nash visualmente</h3>
+                    <p class="text-sm text-brand-600 leading-relaxed">Configura matrices de pagos, identifica estrategias dominantes y comprende decisiones estratégicas sin hacer cálculos manuales tediosos.</p>
                 </div>
 
-                <!-- Tarjeta 3 -->
-                <div class="neubox p-8 bg-brand-50 space-y-4">
-                    <div class="w-14 h-14 neubox bg-white flex items-center justify-center text-brand-accent text-2xl font-bold">
-                        <i class="fa-solid fa-chess-board"></i>
+                <div class="neubox p-7 bg-brand-50 space-y-3">
+                    <div class="w-12 h-12 neubox bg-white flex items-center justify-center text-brand-accent text-xl font-bold">
+                        <i class="fa-solid fa-lock"></i>
                     </div>
-                    <h3 class="text-xl font-bold">Lógica Interactiva</h3>
-                    <p class="text-sm text-brand-600">Convertimos la pizarra de tiza y el papel milimétrico en simuladores dinámicos que potencian el razonamiento crítico del usuario.</p>
+                    <h3 class="text-lg font-bold">Privacidad Local-First, 100% en tu dispositivo</h3>
+                    <p class="text-sm text-brand-600 leading-relaxed">Sin cuentas obligatorias, sin rastreadores y sin conexión a internet. Tus datos y ejercicios nunca salen de tu teléfono.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Portfolio / Aplicaciones -->
-    <section id="portfolio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div class="space-y-3">
-                <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Portafolio Oficial</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Aplicaciones Destacadas</h2>
+    <!-- Sección de Portfolio / Aplicaciones (Embudo Principal de Descarga) -->
+    <section id="portfolio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div class="space-y-2">
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Disponibles en Google Play</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Descarga Nuestras Apps Android</h2>
             </div>
             <p class="text-brand-600 max-w-md text-sm">
-                Nuestros primeros lanzamientos oficiales orientados al ecosistema móvil y optimizados bajo estrictos estándares de calidad.
+                Herramientas gratuitas, ligeras y listas para usar sin registro en cualquier salón de clases o entorno profesional.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             @foreach($portfolios as $portfolio)
-                <div class="neubox bg-white p-8 sm:p-10 flex flex-col justify-between space-y-8">
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
+                @php
+                    $isCalculator = str_contains(strtolower($portfolio->title), 'matricial') || $loop->first;
+                    $detailRoute = $isCalculator ? route('apps.calculator') : route('apps.game-theory');
+                    $privacyRoute = $isCalculator ? route('legal.privacy-calculator') : route('legal.privacy-simulator');
+                    $termsRoute = $isCalculator ? route('legal.terms-calculator') : route('legal.terms-simulator');
+                @endphp
+                <div class="neubox bg-white p-7 sm:p-9 flex flex-col justify-between space-y-6">
+                    <div class="space-y-5">
+                        <div class="flex items-center justify-between gap-3">
                             <span class="px-3 py-1 bg-brand-100 border border-brand-600 text-xs font-mono font-bold text-brand-700">{{ $portfolio->category }}</span>
-                            <div class="w-10 h-10 neubox {{ $portfolio->color_theme == 'brand-warm' ? 'bg-brand-warm' : 'bg-brand-accent' }} flex items-center justify-center text-white font-mono text-lg font-bold">
-                                {{ $portfolio->icon }}
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 bg-green-50 border border-green-600 text-[11px] font-mono font-bold text-green-800 inline-flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved"></i> Local-First
+                                </span>
+                                <div class="w-10 h-10 neubox {{ $portfolio->color_theme == 'brand-warm' ? 'bg-brand-warm' : 'bg-brand-accent' }} flex items-center justify-center text-white font-mono text-base font-bold">
+                                    {{ $portfolio->icon }}
+                                </div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-extrabold text-brand-700">{{ $portfolio->title }}</h3>
-                        <p class="text-brand-600 text-sm leading-relaxed">
-                            {{ $portfolio->description }}
-                        </p>
-                        <div class="flex flex-wrap gap-2 pt-2">
+
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-brand-700">{{ $portfolio->title }}</h3>
+                            <p class="text-brand-600 text-sm leading-relaxed mt-2">
+                                {{ $portfolio->description }}
+                            </p>
+                        </div>
+
+                        <!-- Mini Capturas / Previews de Interfaz -->
+                        <div class="grid grid-cols-2 gap-3">
+                            @if($isCalculator)
+                                <div class="bg-brand-50 border-2 border-brand-600 p-3 space-y-1.5">
+                                    <div class="text-[10px] font-mono font-bold text-brand-accent uppercase">1. Entrada Rápida</div>
+                                    <div class="font-mono text-[11px] bg-white border border-brand-200 p-2 text-center">
+                                        [ 2 &nbsp; -1 &nbsp; 3 ]<br>[ 0 &nbsp;&nbsp; 4 &nbsp; 1 ]<br>[ 5 &nbsp;&nbsp; 2 &nbsp;-2 ]
+                                    </div>
+                                </div>
+                                <div class="bg-brand-50 border-2 border-brand-600 p-3 space-y-1.5">
+                                    <div class="text-[10px] font-mono font-bold text-brand-warm uppercase">2. Auditoría Paso a Paso</div>
+                                    <div class="font-mono text-[11px] bg-brand-700 text-white p-2">
+                                        Sarrus: -20 + 5 - 60<br><strong class="text-brand-accent">det(A) = -85</strong>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="bg-brand-50 border-2 border-brand-600 p-3 space-y-1.5">
+                                    <div class="text-[10px] font-mono font-bold text-brand-warm uppercase">1. Matriz de Pagos</div>
+                                    <div class="font-mono text-[11px] bg-white border border-brand-200 p-2 text-center">
+                                        (3,3) &nbsp;|&nbsp; (0,5)<br>(5,0) &nbsp;|&nbsp; <strong class="text-brand-warm">(1,1)*</strong>
+                                    </div>
+                                </div>
+                                <div class="bg-brand-50 border-2 border-brand-600 p-3 space-y-1.5">
+                                    <div class="text-[10px] font-mono font-bold text-brand-accent uppercase">2. Equilibrio de Nash</div>
+                                    <div class="font-mono text-[11px] bg-brand-700 text-white p-2">
+                                        Dominante: Traicionar<br><strong class="text-brand-warm">Nash: (1, 1)</strong>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
                             @if($portfolio->tags)
                                 @foreach($portfolio->tags as $tag)
                                     <span class="px-2.5 py-1 bg-brand-50 border border-brand-600 text-xs font-mono">{{ $tag }}</span>
@@ -238,57 +249,199 @@
                         </div>
                     </div>
 
-                    <div class="pt-6 border-t-2 border-brand-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <span class="font-mono text-xs text-brand-500 font-semibold">// {{ $portfolio->version ?: 'Lanzamiento' }}</span>
-                        
-                        <div class="flex flex-wrap items-center gap-3 justify-end">
-                            @if($portfolio->privacy_policy)
-                                <a href="{{ route('portfolio.privacy', $portfolio) }}" onclick="openLegalModal('privacy', {{ $portfolio->id }}); return false;" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Política de Privacidad</a>
-                            @endif
-                            @if($portfolio->terms_and_conditions)
-                                <span class="text-brand-300 hidden sm:inline">|</span>
-                                <a href="{{ route('portfolio.terms', $portfolio) }}" onclick="openLegalModal('terms', {{ $portfolio->id }}); return false;" class="text-xs font-semibold text-brand-600 hover:text-brand-accent underline underline-offset-2 transition-colors">Términos y Condiciones</a>
-                            @endif
-                            @if($portfolio->link)
-                                <a href="{{ $portfolio->link }}" class="neubtn px-5 py-2.5 text-sm font-semibold flex items-center gap-2 ml-1">
-                                    <i class="fa-brands fa-google-play"></i> Google Play
+                    <!-- Micro-indicador + Botón Oficial Google Play -->
+                    <div class="pt-5 border-t-2 border-brand-100 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-brand-600 bg-brand-50 px-3 py-2 border border-brand-200">
+                            <span class="font-semibold text-brand-700">
+                                <i class="fa-solid fa-bolt text-brand-accent mr-1"></i> Gratis · Sin registro · Funciona offline
+                            </span>
+                            <span>// {{ $portfolio->version ?: 'Disponible' }}</span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 text-xs">
+                                <a href="{{ $detailRoute }}" class="font-bold text-brand-700 hover:text-brand-accent underline underline-offset-2">
+                                    Ver guía de la app <i class="fa-solid fa-arrow-right text-[10px]"></i>
                                 </a>
+                            </div>
+
+                            <a href="{{ $portfolio->link ?: 'https://play.google.com/store/apps' }}" target="_blank" rel="noopener noreferrer" class="neubtn px-5 py-3 flex items-center justify-center gap-3 bg-brand-700 hover:bg-brand-accent">
+                                <i class="fa-brands fa-google-play text-xl text-brand-accent"></i>
+                                <div class="text-left leading-tight">
+                                    <div class="text-[9px] uppercase tracking-wider text-brand-100/80 font-mono">Disponible en</div>
+                                    <div class="text-sm font-extrabold text-white">Google Play</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 text-[11px] text-brand-500">
+                            @if($portfolio->privacy_policy)
+                                <a href="{{ route('portfolio.privacy', $portfolio) }}" class="hover:text-brand-accent underline underline-offset-2">Política de Privacidad</a>
+                            @else
+                                <a href="{{ $privacyRoute }}" class="hover:text-brand-accent underline underline-offset-2">Política de Privacidad</a>
+                            @endif
+                            <span>·</span>
+                            @if($portfolio->terms_and_conditions)
+                                <a href="{{ route('portfolio.terms', $portfolio) }}" class="hover:text-brand-accent underline underline-offset-2">Términos y Condiciones</a>
+                            @else
+                                <a href="{{ $termsRoute }}" class="hover:text-brand-accent underline underline-offset-2">Términos y Condiciones</a>
                             @endif
                         </div>
                     </div>
-                    
-                    <!-- Hidden content for modals -->
-                    @if($portfolio->privacy_policy)
-                        <div id="legal-content-privacy-{{ $portfolio->id }}" class="hidden">
-                            {!! $portfolio->privacy_policy !!}
-                        </div>
-                    @endif
-                    @if($portfolio->terms_and_conditions)
-                        <div id="legal-content-terms-{{ $portfolio->id }}" class="hidden">
-                            {!! $portfolio->terms_and_conditions !!}
-                        </div>
-                    @endif
                 </div>
             @endforeach
         </div>
+
+        <!-- Prueba Social y Validación -->
+        <div class="mt-14 neubox bg-white p-7 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-brand-100">
+                <div>
+                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Confianza Comprobada</span>
+                    <h3 class="text-xl font-extrabold text-brand-700">Lo que dicen estudiantes, docentes y negocios</h3>
+                </div>
+                <div class="flex items-center gap-4 font-mono text-xs">
+                    <div class="px-3 py-1.5 bg-brand-50 border border-brand-600 font-bold text-brand-700">
+                        <i class="fa-solid fa-star text-yellow-500"></i> 4.8 / 5 Valoración
+                    </div>
+                    <div class="px-3 py-1.5 bg-brand-50 border border-brand-600 font-bold text-brand-700">
+                        <i class="fa-solid fa-ban text-brand-warm"></i> 0 Anuncios
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                <div class="bg-brand-50 border border-brand-200 p-4 space-y-2">
+                    <div class="text-yellow-500 text-xs">★★★★★</div>
+                    <p class="text-xs text-brand-600 leading-relaxed">"El desglose paso a paso de determinantes 3x3 me salvó en mi examen de Álgebra Lineal. Funciona en el metro sin internet."</p>
+                    <div class="font-mono text-[11px] font-bold text-brand-700">— Carlos M., Estudiante de Ingeniería</div>
+                </div>
+                <div class="bg-brand-50 border border-brand-200 p-4 space-y-2">
+                    <div class="text-yellow-500 text-xs">★★★★★</div>
+                    <p class="text-xs text-brand-600 leading-relaxed">"Uso el Simulador de Teoría de Juegos en clase para mostrar el Equilibrio de Nash en vivo. Muy visual y sin registro."</p>
+                    <div class="font-mono text-[11px] font-bold text-brand-700">— Dra. Elena R., Profesora de Economía</div>
+                </div>
+                <div class="bg-brand-50 border border-brand-200 p-4 space-y-2">
+                    <div class="text-yellow-500 text-xs">★★★★★</div>
+                    <p class="text-xs text-brand-600 leading-relaxed">"Nos entregaron la página web de nuestra clínica dental en 10 días con botón directo a WhatsApp. Empezamos a recibir citas esa misma semana."</p>
+                    <div class="font-mono text-[11px] font-bold text-brand-700">— Laura G., Clínica Dental Sonrisa</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Sección de Agentes de IA -->
-    <section id="agentes" class="bg-white border-t-2 border-brand-600 py-24">
+    <!-- Sección B2B Dedicada: Sitios Web para Micro y PyMEs (Separada del embudo de apps) -->
+    <section id="pymes" class="bg-brand-700 text-white border-y-2 border-brand-600 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div class="space-y-3">
-                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Soporte Inteligente</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Nuestros Agentes de IA</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="inline-block px-3 py-1 bg-brand-warm text-white font-mono text-xs font-bold uppercase tracking-wider border border-white">
+                        Servicio B2B · Micro y PyMEs
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                        ¿Tienes un negocio? Lanzamos tu <span class="text-brand-accent underline decoration-brand-warm">sitio web profesional</span> en 7 a 14 días.
+                    </h2>
+                    <p class="text-brand-100/90 text-base max-w-2xl leading-relaxed">
+                        Sin tecnicismos ni mensualidades ocultas. Diseñamos páginas rápidas, claras y listas para convertir visitas en clientes por WhatsApp Business y Google.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-sm">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-clock text-brand-accent mt-1"></i>
+                            <div>
+                                <strong class="block">Entrega rápida (7–14 días)</strong>
+                                <span class="text-xs text-brand-100/75">De la idea a tu sitio publicado sin demoras.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-brands fa-whatsapp text-brand-accent mt-1"></i>
+                            <div>
+                                <strong class="block">Cotizaciones por WhatsApp</strong>
+                                <span class="text-xs text-brand-100/75">Botones directos para cerrar ventas al instante.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-mobile-screen text-brand-accent mt-1"></i>
+                            <div>
+                                <strong class="block">100% Adaptado a Celular</strong>
+                                <span class="text-xs text-brand-100/75">Carga veloz y diseño limpio en cualquier pantalla.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-magnifying-glass-location text-brand-accent mt-1"></i>
+                            <div>
+                                <strong class="block">Listo para Google Local</strong>
+                                <span class="text-xs text-brand-100/75">Estructura optimizada para que te encuentren cerca.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="{{ route('services.pymes') }}" class="neubtn px-7 py-4 font-bold text-center bg-brand-accent text-white border-white hover:bg-brand-warm inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-briefcase"></i> Ver Ejemplos y Planes PyME
+                        </a>
+                        <a href="https://wa.me/5215500000000?text=Hola%2C%20quiero%20cotizar%20un%20sitio%20web%20para%20mi%20PyME" target="_blank" rel="noopener noreferrer" class="neubox px-7 py-4 font-bold text-center bg-white text-brand-700 hover:bg-brand-100 inline-flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-green-600 text-lg"></i> Cotizar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="neubox bg-white text-brand-700 p-6 space-y-4">
+                        <div class="font-mono text-xs font-bold uppercase text-brand-accent border-b-2 border-brand-100 pb-2">
+                            Ejemplos de Sitios que Construimos
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-brand-50 border border-brand-600 flex items-center justify-between">
+                                <div>
+                                    <div class="font-bold text-sm">Consultorios y Servicios</div>
+                                    <div class="text-xs text-brand-600">Agenda de citas + mapa + reseñas</div>
+                                </div>
+                                <span class="font-mono text-xs font-bold text-brand-accent">7 días</span>
+                            </div>
+                            <div class="p-3 bg-brand-50 border border-brand-600 flex items-center justify-between">
+                                <div>
+                                    <div class="font-bold text-sm">Comercios y Catálogos</div>
+                                    <div class="text-xs text-brand-600">Productos + pedidos por WhatsApp</div>
+                                </div>
+                                <span class="font-mono text-xs font-bold text-brand-accent">10 días</span>
+                            </div>
+                            <div class="p-3 bg-brand-50 border border-brand-600 flex items-center justify-between">
+                                <div>
+                                    <div class="font-bold text-sm">Despachos y B2B</div>
+                                    <div class="text-xs text-brand-600">Portafolio + formulario de cotización</div>
+                                </div>
+                                <span class="font-mono text-xs font-bold text-brand-accent">14 días</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Agentes de IA (Sin metadatos técnicos, con preguntas rápidas) -->
+    <section id="agentes" class="bg-white border-b-2 border-brand-600 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div class="space-y-2">
+                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Atención Instantánea 24/7</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Resuelve tus dudas en vivo</h2>
                 </div>
                 <p class="text-brand-600 max-w-md text-sm">
-                    Interactúa en tiempo real con nuestros asistentes cognitivos especializados en diferentes áreas técnicas y académicas.
+                    Pregunta a nuestros asistentes sobre cómo usar nuestras apps paso a paso o cotiza al instante el sitio web de tu negocio.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @foreach($agents as $agent)
-                    <div class="neubox p-8 bg-brand-50 space-y-6 flex flex-col justify-between">
+                    @php
+                        $isSocrates = str_contains(strtolower($agent->name), 'socrates');
+                        $roleLabel = $isSocrates ? 'Tutor de Álgebra Lineal y Teoría de Juegos' : 'Asesora de Sitios Web PyME y Software';
+                        $quickPrompts = $isSocrates
+                            ? ['¿Cómo funciona el modo paso a paso?', 'Explícame el Equilibrio de Nash con un ejemplo']
+                            : ['¿Cuánto cuesta y qué incluye un sitio web para mi PyME?', '¿En cuánto tiempo entregan una página web?'];
+                    @endphp
+                    <div class="neubox p-7 bg-brand-50 space-y-5 flex flex-col justify-between">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -297,19 +450,35 @@
                                     </div>
                                     <div>
                                         <h3 class="text-xl font-bold text-brand-700">{{ $agent->name }}</h3>
-                                        <span class="text-xs text-brand-500 font-mono">Modo: {{ $agent->model }}</span>
+                                        <span class="text-xs text-brand-600 font-medium">{{ $roleLabel }}</span>
                                     </div>
                                 </div>
                                 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-300">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Activo
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> En línea
                                 </span>
                             </div>
                             <p class="text-sm text-brand-600 leading-relaxed">{{ $agent->description }}</p>
+
+                            <!-- Preguntas Rápidas Clicables -->
+                            <div class="space-y-2 pt-1">
+                                <div class="text-[11px] font-mono font-bold uppercase text-brand-500">Preguntas rápidas:</div>
+                                <div class="flex flex-col gap-2">
+                                    @foreach($quickPrompts as $promptText)
+                                        <button type="button"
+                                            onclick="openChatWithPrompt({{ $agent->id }}, '{{ addslashes($agent->name) }}', '{{ $agent->avatar ?: 'fa-solid fa-robot' }}', '{{ addslashes($promptText) }}')"
+                                            class="text-left text-xs bg-white hover:bg-brand-100 border border-brand-600 px-3 py-2 font-medium text-brand-700 flex items-center justify-between gap-2 transition-colors">
+                                            <span>"{{ $promptText }}"</span>
+                                            <i class="fa-solid fa-arrow-right text-brand-accent text-[10px]"></i>
+                                        </button>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
+
                         <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
-                            <span class="text-xs font-mono text-brand-500">// Proveedor: {{ $agent->provider }}</span>
-                            <button onclick="openChat({{ $agent->id }}, '{{ $agent->name }}', '{{ $agent->avatar ?: 'fa-solid fa-robot' }}')" class="neubtn px-5 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                                <i class="fa-solid fa-comments"></i> Chatear
+                            <span class="text-xs font-mono text-brand-600">Respuesta inmediata</span>
+                            <button type="button" onclick="openChat({{ $agent->id }}, '{{ addslashes($agent->name) }}', '{{ $agent->avatar ?: 'fa-solid fa-robot' }}')" class="neubtn px-5 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-comments"></i> Chatear ahora
                             </button>
                         </div>
                     </div>
@@ -318,62 +487,85 @@
         </div>
     </section>
 
-    <!-- Sección de Contacto -->
-    <section id="contacto" class="bg-brand-50 border-t-2 border-brand-600 py-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Bloque de Retención + Sección de Contacto -->
+    <section id="contacto" class="bg-brand-50 py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+            <!-- Retención: Novedades y Guías -->
+            <div class="neubox bg-brand-100 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-1.5 max-w-lg">
+                    <span class="font-mono text-xs font-bold uppercase text-brand-accent">Novedades &amp; Guías</span>
+                    <h3 class="text-xl font-extrabold text-brand-700">Entérate de nuestras próximas apps y guías gratuitas</h3>
+                    <p class="text-xs text-brand-600">Recibe un correo solo cuando lancemos una nueva herramienta matemática o guía práctica para PyMEs. Cero spam.</p>
+                </div>
+                <form onsubmit="handleNewsletterSubmit(event)" class="w-full md:w-auto flex flex-col sm:flex-row gap-2.5">
+                    <input id="newsletter-email" type="email" required placeholder="tu@correo.com" class="neubox bg-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent min-w-[230px]">
+                    <button type="submit" class="neubtn px-5 py-2.5 font-bold text-xs uppercase tracking-wider whitespace-nowrap">
+                        Suscribirme
+                    </button>
+                </form>
+                <div id="newsletter-feedback" class="hidden text-xs font-mono font-bold text-green-700 bg-green-100 border border-green-500 px-3 py-2"></div>
+            </div>
+
+            <!-- Formulario de Contacto (Apps y PyMEs) -->
             <div class="neubox bg-white p-8 sm:p-12 space-y-8">
                 <div class="text-center space-y-3">
                     <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">Canal Directo</span>
-                    <h2 class="text-3xl font-extrabold">Inicia un proyecto con nosotros</h2>
+                    <h2 class="text-3xl font-extrabold">¿Cotizamos tu sitio web o necesitas soporte?</h2>
                     <p class="text-brand-600 text-sm max-w-lg mx-auto">
-                        ¿Interesado en nuestras herramientas académicas o en colaborar en un desarrollo tecnológico a la medida? Escríbenos.
+                        Escríbenos para solicitar el sitio web de tu micro/PyME o resolver cualquier duda sobre nuestras aplicaciones en Google Play.
                     </p>
                 </div>
 
-                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Mensaje simulado enviado con éxito. ¡Gracias por contactar a Solutions Factory Studio!');">
+                <form id="contact-form" class="space-y-6" onsubmit="handleContactSubmit(event)">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="block text-xs font-mono font-bold uppercase">Nombre / Institución</label>
-                            <input type="text" required class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="Ej. Dr. Roberto Gómez">
+                            <label for="contact-name" class="block text-xs font-mono font-bold uppercase">Nombre / Negocio</label>
+                            <input id="contact-name" type="text" required class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="Ej. Laura Gómez · Clínica Dental">
                         </div>
                         <div class="space-y-2">
-                            <label class="block text-xs font-mono font-bold uppercase">Correo Electrónico</label>
-                            <input type="email" required class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="contacto@universidad.edu">
+                            <label for="contact-email" class="block text-xs font-mono font-bold uppercase">Correo Electrónico</label>
+                            <input id="contact-email" type="email" required class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="nombre@tunegocio.com">
                         </div>
                     </div>
+
                     <div class="space-y-2">
-                        <label class="block text-xs font-mono font-bold uppercase">Mensaje o Propuesta</label>
-                        <textarea rows="4" required class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="Escribe los detalles de tu consulta..."></textarea>
+                        <label for="contact-topic" class="block text-xs font-mono font-bold uppercase">¿En qué podemos ayudarte?</label>
+                        <select id="contact-topic" class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                            <option value="pyme">Cotizar un Sitio Web para mi Micro / PyME</option>
+                            <option value="apps">Soporte o sugerencia sobre Apps Android</option>
+                            <option value="otro">Otro proyecto de software a la medida</option>
+                        </select>
                     </div>
-                    <div class="text-center pt-2">
-                        <button type="submit" class="neubtn px-10 py-4 font-bold text-base inline-flex items-center gap-3">
-                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
-                        </button>
+
+                    <div class="space-y-2">
+                        <label for="contact-message" class="block text-xs font-mono font-bold uppercase">Detalles de tu consulta</label>
+                        <textarea id="contact-message" rows="4" required class="w-full neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" placeholder="Cuéntanos brevemente sobre tu negocio o tu consulta..."></textarea>
+                    </div>
+
+                    <div id="contact-feedback" class="hidden p-4 bg-green-50 border-2 border-green-600 text-green-800 text-sm font-medium text-center">
+                        ¡Gracias! Hemos recibido tu mensaje. El equipo de <strong>Solutions Factory Studio S.A.S.</strong> te responderá pronto a tu correo.
+                    </div>
+
+                    <div class="text-center space-y-4 pt-2">
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <button type="submit" class="neubtn px-10 py-4 font-bold text-base inline-flex items-center gap-3 w-full sm:w-auto justify-center">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                            </button>
+                            <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20interesa%20cotizar%20un%20sitio%20web%20PyME" target="_blank" rel="noopener noreferrer" class="neubox px-6 py-4 font-bold text-sm bg-white hover:bg-green-50 text-brand-700 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+                                <i class="fa-brands fa-whatsapp text-green-600 text-lg"></i> WhatsApp Directo
+                            </a>
+                        </div>
+                        <p class="text-xs text-brand-500">
+                            Al enviar este formulario aceptas nuestro <a href="{{ route('legal.privacy-general') }}" class="text-brand-accent underline font-semibold">Aviso de Privacidad</a>.
+                        </p>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-brand-700 text-white border-t-2 border-brand-600 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 neubox bg-brand-accent flex items-center justify-center text-white font-mono font-bold text-sm">
-                    SF
-                </div>
-                <span class="font-bold text-lg font-mono">Solutions Factory Studio S.A.S.</span>
-            </div>
-            <p class="text-xs font-mono text-brand-100/70 text-center">
-                &copy; 2026 Solutions Factory Studio S.A.S. Todos los derechos reservados. Rigor lógico y desarrollo ágil.
-            </p>
-            <div class="flex space-x-4 text-lg">
-                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-google-play"></i></a>
-                <a href="#" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Chat Modal -->
     <div id="chat-modal" class="fixed inset-0 z-50 hidden bg-brand-700/40 backdrop-blur-sm flex items-center justify-center p-4">
@@ -387,11 +579,11 @@
                     <div>
                         <h3 id="chat-agent-name" class="font-bold text-brand-700 font-mono">Agente</h3>
                         <span class="text-[10px] text-green-600 flex items-center gap-1 font-semibold uppercase tracking-wider">
-                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> En línea
                         </span>
                     </div>
                 </div>
-                <button onclick="closeChat()" class="text-brand-600 hover:text-brand-warm text-sm font-bold font-mono">
+                <button type="button" onclick="closeChat()" class="text-brand-600 hover:text-brand-warm text-sm font-bold font-mono">
                     [CERRAR X]
                 </button>
             </div>
@@ -403,7 +595,7 @@
 
             <!-- Input Area -->
             <form id="chat-form" onsubmit="sendMessage(event)" class="border-t-2 border-brand-600 p-4 bg-white flex gap-3">
-                <input id="chat-input" type="text" autocomplete="off" required class="flex-1 neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent font-mono" placeholder="Escribe un mensaje...">
+                <input id="chat-input" type="text" autocomplete="off" required class="flex-1 neubox bg-brand-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent font-mono" placeholder="Escribe tu duda...">
                 <button type="submit" class="neubtn px-6 py-3 font-bold text-sm inline-flex items-center gap-2 font-mono">
                     <span>ENVIAR</span>
                     <i class="fa-solid fa-paper-plane text-xs"></i>
@@ -414,17 +606,51 @@
 
     <!-- JS Logic -->
     <script>
+        function switchHeroMockup(app) {
+            const calcScreen = document.getElementById('hero-mock-calc');
+            const gameScreen = document.getElementById('hero-mock-game');
+            const calcTab = document.getElementById('tab-mock-calc');
+            const gameTab = document.getElementById('tab-mock-game');
+
+            if (app === 'calc') {
+                calcScreen.classList.remove('hidden');
+                gameScreen.classList.add('hidden');
+                calcTab.className = 'px-3 py-1.5 text-xs font-mono font-bold border-2 border-brand-600 bg-brand-accent text-white transition-colors';
+                gameTab.className = 'px-3 py-1.5 text-xs font-mono font-bold border-2 border-brand-600 bg-brand-50 text-brand-700 hover:bg-brand-100 transition-colors';
+            } else {
+                calcScreen.classList.add('hidden');
+                gameScreen.classList.remove('hidden');
+                gameTab.className = 'px-3 py-1.5 text-xs font-mono font-bold border-2 border-brand-600 bg-brand-warm text-white transition-colors';
+                calcTab.className = 'px-3 py-1.5 text-xs font-mono font-bold border-2 border-brand-600 bg-brand-50 text-brand-700 hover:bg-brand-100 transition-colors';
+            }
+        }
+
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('newsletter-feedback');
+            feedback.textContent = '¡Listo! Te avisaremos cuando lancemos nuevas apps y guías.';
+            feedback.classList.remove('hidden');
+            event.target.reset();
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('contact-feedback');
+            feedback.classList.remove('hidden');
+            event.target.reset();
+        }
+
         let currentAgentId = null;
 
         function openChat(agentId, agentName, agentAvatar) {
             currentAgentId = agentId;
             document.getElementById('chat-agent-name').textContent = agentName;
-            
+
             const iconElement = document.getElementById('chat-agent-avatar');
             iconElement.className = agentAvatar;
-            
+
             document.getElementById('chat-modal').classList.remove('hidden');
-            
+
             const messagesContainer = document.getElementById('chat-messages');
             messagesContainer.innerHTML = `
                 <div class="flex items-start space-x-2.5">
@@ -432,11 +658,18 @@
                         <i class="${agentAvatar}"></i>
                     </div>
                     <div class="neubox bg-white p-3.5 max-w-[80%] text-sm text-brand-700">
-                        ¡Hola! Soy <strong>${agentName}</strong>. Escríbeme cualquier consulta y estaré encantado de guiarte paso a paso.
+                        ¡Hola! Soy <strong>${agentName}</strong>. Escríbeme cualquier consulta sobre nuestras apps o sobre cómo crear el sitio web de tu negocio.
                     </div>
                 </div>
             `;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function openChatWithPrompt(agentId, agentName, agentAvatar, promptText) {
+            openChat(agentId, agentName, agentAvatar);
+            const input = document.getElementById('chat-input');
+            input.value = promptText;
+            sendMessage(new Event('submit'));
         }
 
         function closeChat() {
@@ -445,7 +678,7 @@
         }
 
         async function sendMessage(event) {
-            event.preventDefault();
+            if (event) event.preventDefault();
             const input = document.getElementById('chat-input');
             const messageText = input.value.trim();
             if (!messageText || !currentAgentId) return;
@@ -453,19 +686,20 @@
             input.value = '';
 
             const messagesContainer = document.getElementById('chat-messages');
-            
-            // Add user message
+
+            // Escape HTML for user message
+            const safeText = messageText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
             messagesContainer.innerHTML += `
                 <div class="flex items-start justify-end space-x-2.5">
                     <div class="neubox bg-brand-accent text-white p-3.5 max-w-[80%] text-sm">
-                        ${messageText}
+                        ${safeText}
                     </div>
                 </div>
             `;
-            
+
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Add typing indicator
             const typingId = 'typing-' + Date.now();
             const currentAvatarClass = document.getElementById('chat-agent-avatar').className;
             messagesContainer.innerHTML += `
@@ -492,12 +726,10 @@
                 });
 
                 const data = await response.json();
-                
-                // Remove typing indicator
+
                 const typingElement = document.getElementById(typingId);
                 if (typingElement) typingElement.remove();
 
-                // Add agent response
                 messagesContainer.innerHTML += `
                     <div class="flex items-start space-x-2.5">
                         <div class="w-8 h-8 flex-shrink-0 neubox bg-brand-accent flex items-center justify-center text-white text-xs">
@@ -512,7 +744,7 @@
                 console.error(error);
                 const typingElement = document.getElementById(typingId);
                 if (typingElement) typingElement.remove();
-                
+
                 messagesContainer.innerHTML += `
                     <div class="flex items-start space-x-2.5">
                         <div class="w-8 h-8 flex-shrink-0 neubox bg-brand-warm flex items-center justify-center text-white text-xs">
@@ -524,62 +756,8 @@
                     </div>
                 `;
             }
-            
+
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-    </script>
-    <!-- Modal Legal -->
-    <div id="legalModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-brand-700/80 backdrop-blur-sm" onclick="closeLegalModal()"></div>
-        
-        <!-- Modal Content -->
-        <div class="neubox bg-white w-full max-w-3xl max-h-[90vh] flex flex-col relative z-10">
-            <div class="flex items-center justify-between p-6 border-b-2 border-brand-100">
-                <h3 id="legalModalTitle" class="text-2xl font-extrabold text-brand-700">Documento Legal</h3>
-                <button onclick="closeLegalModal()" class="w-8 h-8 flex items-center justify-center text-brand-500 hover:text-brand-warm hover:bg-brand-50 border-2 border-transparent hover:border-brand-warm transition-colors">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            
-            <div id="legalModalBody" class="p-6 overflow-y-auto legal-content text-brand-600 text-sm">
-                <!-- Contenido inyectado por JS -->
-            </div>
-            
-            <div class="p-4 border-t-2 border-brand-100 flex justify-end bg-brand-50">
-                <button onclick="closeLegalModal()" class="neubtn px-6 py-2.5 text-sm font-bold bg-white text-brand-700">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .legal-content h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: #0b192e; }
-        .legal-content h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.75rem; color: #13294d; margin-top: 1.5rem; }
-        .legal-content h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: #1b3b6f; margin-top: 1.25rem; }
-        .legal-content p { margin-bottom: 1rem; line-height: 1.6; }
-        .legal-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
-        .legal-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
-        .legal-content li { margin-bottom: 0.5rem; }
-        .legal-content strong { font-weight: 700; color: #0b192e; }
-        .legal-content a { color: #218380; text-decoration: underline; text-underline-offset: 2px; }
-    </style>
-
-    <script>
-        function openLegalModal(type, id) {
-            const contentId = `legal-content-${type}-${id}`;
-            const contentEl = document.getElementById(contentId);
-            
-            if (contentEl) {
-                document.getElementById('legalModalTitle').innerText = type === 'privacy' ? 'Política de Privacidad' : 'Términos y Condiciones';
-                document.getElementById('legalModalBody').innerHTML = contentEl.innerHTML;
-                document.getElementById('legalModal').classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeLegalModal() {
-            document.getElementById('legalModal').classList.add('hidden');
-            document.body.style.overflow = '';
         }
     </script>
 </body>

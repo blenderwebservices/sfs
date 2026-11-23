@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }} | Solutions Factory Studio</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>{{ $title }} | Solutions Factory Studio S.A.S.</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -54,23 +55,39 @@
 </head>
 <body class="bg-brand-50 text-brand-700 font-sans antialiased grid-bg min-h-screen py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href="/" class="inline-flex items-center gap-2 mb-8 text-brand-600 hover:text-brand-accent font-semibold text-sm transition-colors">
+        <a href="{{ route('home') }}" class="inline-flex items-center gap-2 mb-8 text-brand-600 hover:text-brand-accent font-semibold text-sm transition-colors">
             <i class="fa-solid fa-arrow-left"></i> Volver a Inicio
         </a>
-        
+
         <div class="neubox p-8 sm:p-12">
             <div class="border-b-2 border-brand-100 pb-6 mb-8 text-center sm:text-left">
+                <span class="inline-block px-2.5 py-1 bg-brand-100 border border-brand-600 font-mono text-[11px] font-bold uppercase tracking-wider text-brand-600 mb-3">
+                    Documento Legal Oficial
+                </span>
                 <h1 class="text-3xl font-extrabold text-brand-700 tracking-tight">{{ $title }}</h1>
-                <p class="text-brand-500 font-mono text-sm mt-2">Documento público / {{ $portfolio->version ?: 'Lanzamiento' }}</p>
+                <p class="text-brand-500 font-mono text-sm mt-2">
+                    @if(isset($portfolio) && $portfolio)
+                        {{ $portfolio->version ?: 'Lanzamiento Oficial' }} · Solutions Factory Studio S.A.S.
+                    @else
+                        {{ $subtitle ?? 'Solutions Factory Studio S.A.S.' }}
+                    @endif
+                </p>
             </div>
-            
+
             <div class="legal-content text-brand-600">
                 {!! $content !!}
             </div>
+
+            <div class="mt-10 pt-6 border-t-2 border-brand-100 text-xs font-mono text-brand-500 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <span>Titular: <strong>Solutions Factory Studio S.A.S.</strong></span>
+                <span>Soporte legal: <a href="mailto:contacto@solutions-factory-studio.app" class="text-brand-accent underline">contacto@solutions-factory-studio.app</a></span>
+            </div>
         </div>
-        
-        <div class="mt-12 text-center text-xs font-mono text-brand-700 bg-brand-50/90 inline-block p-2 border border-brand-200">
-            &copy; 2026 Solutions Factory Studio S.A.S.
+
+        <div class="mt-12 text-center">
+            <div class="text-xs font-mono text-brand-700 bg-brand-50/90 inline-block p-2 border border-brand-200">
+                &copy; 2026 Solutions Factory Studio S.A.S. · Todos los derechos reservados.
+            </div>
         </div>
     </div>
 </body>
